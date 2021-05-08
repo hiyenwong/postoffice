@@ -4,10 +4,7 @@ import io.hiyenwong.postoffice.jenkins.notification.Message;
 import io.hiyenwong.postoffice.model.vo.response.BasicRespVO;
 import io.swagger.annotations.Api;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Hi Yen Wong
@@ -18,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 @Log4j2
 public class TestController {
-    @PostMapping("/receiveMsg")
-    public BasicRespVO receive(@RequestBody Message requestBody) {
+    @RequestMapping(value = "/receiveMsg/{client}/", method = RequestMethod.POST)
+    public BasicRespVO receive(@PathVariable("client") String client, @RequestBody Message requestBody) {
+        log.debug(client);
         log.debug("request body: " + requestBody.toString());
         return new BasicRespVO();
     }

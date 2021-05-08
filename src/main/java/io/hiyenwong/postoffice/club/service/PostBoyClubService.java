@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @date 5/4/2021 12:36 AM
  */
 @Service
-public class PostStationService {
+public class PostBoyClubService {
     @Resource
     PostBoyClubRepository postBoyClubRepository;
 
@@ -30,4 +30,5 @@ public class PostStationService {
         postBoyClubDao.setUrl(postBoyClubRequestVO.getUrl());
         return postBoyClubRepository.save(postBoyClubDao);
     }
+
 }

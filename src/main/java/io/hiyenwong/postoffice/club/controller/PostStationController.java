@@ -2,7 +2,7 @@ package io.hiyenwong.postoffice.club.controller;
 
 import io.hiyenwong.postoffice.club.model.dao.PostBoyClubDao;
 import io.hiyenwong.postoffice.club.model.vo.request.PostBoyClubRequestVO;
-import io.hiyenwong.postoffice.club.service.PostStationService;
+import io.hiyenwong.postoffice.club.service.PostBoyClubService;
 import io.hiyenwong.postoffice.model.vo.response.BasicRespVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 @Api("配置")
 public class PostStationController {
     @Resource
-    PostStationService postStationService;
+    PostBoyClubService postBoyClubService;
 
     @RequestMapping(value = "/postBoy/_list", method = RequestMethod.GET)
     @ResponseBody
@@ -34,7 +34,7 @@ public class PostStationController {
     @ResponseBody
     @ApiOperation(value = "add club", notes = "add post boy club")
     public BasicRespVO addClient(PostBoyClubRequestVO postBoyClubRequestVO) {
-        PostBoyClubDao postBoyClubDao = postStationService.addClient(postBoyClubRequestVO);
+        PostBoyClubDao postBoyClubDao = postBoyClubService.addClient(postBoyClubRequestVO);
         return new BasicRespVO();
     }
 

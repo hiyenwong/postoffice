@@ -1,6 +1,7 @@
 package io.hiyenwong.postoffice.jenkins.notification;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.hiyenwong.postoffice.model.vo.response.MessageInterface;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @date 5/8/2021 12:11 AM
  */
 @Data
-public class Message {
+public class Message implements MessageInterface {
     private Build build;
     private String name;
     @JsonProperty("display_name")

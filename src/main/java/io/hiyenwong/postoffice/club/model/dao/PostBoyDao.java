@@ -20,7 +20,6 @@ public class PostBoyDao implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_boy_id_seq")
     @SequenceGenerator(name = "post_boy_id_seq", sequenceName = "post_boy_id_seq")
     private Integer id;
-    private String token;
     private String sign;
     private Integer clubId;
     private String common;

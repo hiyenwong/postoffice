@@ -2,7 +2,6 @@ package io.hiyenwong.postoffice.common.log;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
-import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -47,7 +46,7 @@ public class LogAspect {
         }
     }
 
-//    @SneakyThrows
+    //    @SneakyThrows
     private JSONObject getJSONParam(HttpServletRequest request) {
         JSONObject jsonParam = null;
         try {
