@@ -1,9 +1,13 @@
 package io.hiyenwong.postoffice.club.model.dao;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 客户端维表
@@ -14,14 +18,18 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "post_boy_club")
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class PostBoyClubDao implements Serializable {
     private static final long serialVersionUID = 8196662055846669272L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="club_id_seq")
-    @SequenceGenerator(name="club_id_seq", sequenceName = "club_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "club_id_seq")
+    @SequenceGenerator(name = "club_id_seq", sequenceName = "club_id_seq")
     private Integer id;
     private String name;
     private String url;
     private Integer status;
     private String common;
+
 }

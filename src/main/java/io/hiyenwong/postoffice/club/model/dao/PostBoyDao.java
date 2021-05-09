@@ -1,6 +1,11 @@
 package io.hiyenwong.postoffice.club.model.dao;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,6 +19,9 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name = "post_boy")
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class PostBoyDao implements Serializable {
     private static final long serialVersionUID = -5893923220428634182L;
     @Id
@@ -25,7 +33,9 @@ public class PostBoyDao implements Serializable {
     private String common;
     private Integer status;
     private String key;
+
+    @JoinTable(name = "post_boy_club")
+    @JoinColumn(name = "club_id" ,referencedColumnName = "id")
     @ManyToOne
-    @JoinTable(name="club_id")
     private PostBoyClubDao postBoyClubDao;
 }

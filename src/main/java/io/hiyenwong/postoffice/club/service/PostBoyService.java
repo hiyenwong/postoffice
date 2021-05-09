@@ -1,8 +1,6 @@
 package io.hiyenwong.postoffice.club.service;
 
-import io.hiyenwong.postoffice.club.model.dao.PostBoyClubDao;
-import io.hiyenwong.postoffice.club.model.dao.PostBoyDao;
-import io.hiyenwong.postoffice.club.repository.PostBoyClubRepository;
+import io.hiyenwong.postoffice.club.model.dao.PostBoyJoinClubDao;
 import io.hiyenwong.postoffice.club.repository.PostBoyRepository;
 import io.hiyenwong.postoffice.model.vo.response.MessageInterface;
 import io.hiyenwong.postoffice.wecom.service.WeComServiceImp;
@@ -23,22 +21,15 @@ public class PostBoyService {
     PostBoyRepository postBoyRepository;
 
     @Resource
-    PostBoyClubRepository postBoyClubRepository;
-
-    @Resource
     WeComServiceImp weComServiceImp;
 
     public void sendMsg(String client, String key, MessageInterface message) {
-        List<PostBoyDao> postBoyDaoList = postBoyRepository.findPostBoyDaoByKey(key);
+        List<PostBoyJoinClubDao> postBoyDaoList = postBoyRepository.findPostBoyDaoByKey(key);
         if (!postBoyDaoList.isEmpty()) {
-            List<PostBoyClubDao> postBoyClubDaos = postBoyClubRepository
-                    .findPostBoyClubDaoById(postBoyDaoList.get(0).getClubId());
-
-            if (!postBoyClubDaos.isEmpty()) {
-                weComServiceImp.setUrl(postBoyClubDaos.get(0).getUrl());
-                weComServiceImp.setKey(key);
-                weComServiceImp.send(message.toString());
-            }
+            log.debug(postBoyDaoList);
+            weComServiceImp.setKey(postBoyDaoList.get(0).getKey());
+            weComServiceImp.setUrl(postBoyDaoList.get(0).getUrl());
+            weComServiceImp.send(message.toString());
         }
 
     }
