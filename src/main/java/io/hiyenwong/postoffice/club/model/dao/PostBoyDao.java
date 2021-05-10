@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+import static javax.persistence.GenerationType.SEQUENCE;
 
 /**
  * 客户端密钥配置
@@ -25,17 +25,19 @@ import java.io.Serializable;
 public class PostBoyDao implements Serializable {
     private static final long serialVersionUID = -5893923220428634182L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_boy_id_seq")
-    @SequenceGenerator(name = "post_boy_id_seq", sequenceName = "post_boy_id_seq")
-    private Integer id;
+    @GeneratedValue(strategy = SEQUENCE, generator = "post_boy_sequence")
+    @SequenceGenerator(name = "post_boy_sequence", sequenceName = "post_boy_sequence", allocationSize = 1)
+    @Column(name = "id", unique = true, updatable = false)
+    private Long id;
     private String sign;
+    @Column(name = "club_id")
     private Integer clubId;
     private String common;
     private Integer status;
     private String key;
 
     @JoinTable(name = "post_boy_club")
-    @JoinColumn(name = "club_id" ,referencedColumnName = "id")
+    @JoinColumn(name = "club_id", referencedColumnName = "id")
     @ManyToOne
     private PostBoyClubDao postBoyClubDao;
 }

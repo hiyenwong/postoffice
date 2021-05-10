@@ -7,7 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+
+import static javax.persistence.GenerationType.SEQUENCE;
 
 /**
  * 客户端维表
@@ -24,9 +25,10 @@ import java.util.List;
 public class PostBoyClubDao implements Serializable {
     private static final long serialVersionUID = 8196662055846669272L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "club_id_seq")
-    @SequenceGenerator(name = "club_id_seq", sequenceName = "club_id_seq")
-    private Integer id;
+    @GeneratedValue(strategy = SEQUENCE, generator = "post_boy_club_sequence")
+    @SequenceGenerator(name = "post_boy_club_sequence", sequenceName = "post_boy_club_sequence", allocationSize = 1)
+    @Column(name = "id", unique = true, updatable = false)
+    private Long id;
     private String name;
     private String url;
     private Integer status;
