@@ -24,6 +24,6 @@ public interface PostBoyRepository extends JpaRepository<PostBoyDao, Integer> {
      */
     @Query("SELECT new " +
             "io.hiyenwong.postoffice.club.model.dao.PostBoyJoinClubDao(pbc.name , pbc.url  , pb.key , pb.sign) " +
-            "FROM PostBoyDao as pb LEFT JOIN PostBoyClubDao as pbc ON pb.clubId=pbc.id WHERE pb.key=:key")
-    List<PostBoyJoinClubDao> findPostBoyDaoByKey(@Param("key") String key);
+            "FROM PostBoyDao as pb LEFT JOIN PostBoyClubDao as pbc ON pb.clubId=pbc.id WHERE pb.pbKey=:key")
+    List<PostBoyJoinClubDao> findPostBoyDaoByKey(@Param("key") Long key);
 }

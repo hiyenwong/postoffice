@@ -31,22 +31,36 @@ public class WeComServiceImp implements MessageServiceInterface {
      * @return
      */
     @Override
-    public String send(String msg) {
+    public String sendTxt(String msg) {
         checkUrl();
         WeComDomain textContent = WeComDomain.textBuilder(msg).build();
         String weComUrl = this.url + this.key;
         log.debug(weComUrl);
         String postBody = gson.toJson(textContent);
+        log.debug("post body: "+postBody);
         return httpConnector.post(weComUrl, postBody);
     }
-
+    /**
+     * @param msg
+     * @return
+     */
+    @Override
+    public String sendMarkDown(String msg) {
+        checkUrl();
+        WeComDomain textContent = WeComDomain.markdownBuilder(msg).build();
+        String weComUrl = this.url + this.key;
+        log.debug(weComUrl);
+        String postBody = gson.toJson(textContent);
+        log.debug("post body: "+postBody);
+        return httpConnector.post(weComUrl, postBody);
+    }
     /**
      * @param msg
      * @param mentionList
      * @return
      */
     @Override
-    public String send(String msg, String... mentionList) {
+    public String sendTxt(String msg, String... mentionList) {
         WeComDomain textContent = WeComDomain.textBuilder(msg)
                 .addUserIdForAt(mentionList).build();
         String weComUrl = this.url + this.key;

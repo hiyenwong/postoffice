@@ -29,15 +29,12 @@ public class PostBoyDao implements Serializable {
     @SequenceGenerator(name = "post_boy_sequence", sequenceName = "post_boy_sequence", allocationSize = 1)
     @Column(name = "id", unique = true, updatable = false)
     private Long id;
+    @Column(name = "pb_key")
+    private Long pbKey;
     private String sign;
     @Column(name = "club_id")
     private Integer clubId;
     private String common;
     private Integer status;
     private String key;
-
-    @JoinTable(name = "post_boy_club")
-    @JoinColumn(name = "club_id", referencedColumnName = "id")
-    @ManyToOne
-    private PostBoyClubDao postBoyClubDao;
 }

@@ -28,10 +28,10 @@ public class PostBoyClubDao implements Serializable {
     @GeneratedValue(strategy = SEQUENCE, generator = "post_boy_club_sequence")
     @SequenceGenerator(name = "post_boy_club_sequence", sequenceName = "post_boy_club_sequence", allocationSize = 1)
     @Column(name = "id", unique = true, updatable = false)
-    private Long id;
+    private Integer id;
     private String name;
     private String url;
     private Integer status;
     private String common;
-
+    private String type;
 }

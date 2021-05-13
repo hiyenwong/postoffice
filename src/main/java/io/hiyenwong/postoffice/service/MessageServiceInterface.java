@@ -11,7 +11,15 @@ public interface MessageServiceInterface {
      * @param msg
      * @return
      */
-    String send(String msg);
+    String sendTxt(String msg);
+
+    /**
+     * 发送 MARK DOWN
+     *
+     * @param msg
+     * @return
+     */
+    String sendMarkDown(String msg);
 
     /**
      * 发送消息给指定对象
@@ -20,5 +28,5 @@ public interface MessageServiceInterface {
      * @param mentionList
      * @return
      */
-    String send(String msg, String... mentionList);
+    String sendTxt(String msg, String... mentionList);
 }

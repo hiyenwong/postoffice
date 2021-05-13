@@ -14,7 +14,18 @@ public class DingTalkServiceImp implements MessageServiceInterface {
      * @return
      */
     @Override
-    public String send(String msg) {
+    public String sendTxt(String msg) {
+        return null;
+    }
+
+    /**
+     * 发送 MARK DOWN
+     *
+     * @param msg
+     * @return
+     */
+    @Override
+    public String sendMarkDown(String msg) {
         return null;
     }
 
@@ -26,7 +37,7 @@ public class DingTalkServiceImp implements MessageServiceInterface {
      * @return
      */
     @Override
-    public String send(String msg, String... mentionList) {
+    public String sendTxt(String msg, String... mentionList) {
         return null;
     }
 }
